@@ -1,0 +1,385 @@
+:root {
+    --dark-bg: #2d2d39;
+    --darker-bg: #23232e;
+    --accent-color: #4a6fa5;
+    --secondary-accent: #6c8ebf;
+    --text-color: #e8e8e8;
+    --entry-bg: #3a3a4a;
+    --profit-color: #4dff57; /* Cor de lucro mais brilhante para melhor contraste */
+    --loss-color: #ff5a5a; /* Cor de prejuízo mais brilhante para melhor contraste */
+    --highlight-color: #5d8fd3;
+    --button-hover: #3d5a80;
+    
+    /* Cores de raridade */
+    --common-color: #a8a8a8;
+    --uncommon-color: #4cc9f0;
+    --rare-color: #ffd700;
+    --epic-color: #b57edc;
+    --legendary-color: #ff8c42;
+    
+    /* Cores RPG */
+    --rpg-primary: #8a5fb9;
+    --rpg-secondary: #5a3a7e;
+    --rpg-dark: #1e1a2b;
+    --rpg-light: #c4a5e5;
+    --rpg-gold: #ffd700;
+}
+
+body {
+    background-color: var(--rpg-dark);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Efeito de partículas */
+#tsparticles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Estilo RPG para títulos */
+.rpg-title, .title-text {
+    font-family: 'MedievalSharp', cursive;
+    color: var(--rpg-gold);
+    text-shadow: 0 0 5px rgba(138, 95, 185, 0.7);
+    letter-spacing: 1px;
+}
+
+.rpg-subtitle, .subtitle-text {
+    font-family: 'MedievalSharp', cursive;
+    color: var(--rpg-light);
+    letter-spacing: 0.5px;
+}
+
+.rpg-label {
+    background-color: var(--rpg-secondary);
+    color: var(--text-color);
+    border-color: var(--rpg-primary);
+    font-family: 'MedievalSharp', cursive;
+}
+
+/* Cabeçalho estilizado */
+.header-card {
+    background-color: var(--rpg-dark);
+    border: 2px solid var(--rpg-secondary);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(138, 95, 185, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.header-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, transparent 70%, rgba(138, 95, 185, 0.2));
+    pointer-events: none;
+}
+
+/* Abas estilizadas */
+.rpg-tabs {
+    border-bottom: 1px solid var(--rpg-secondary);
+}
+
+.rpg-tabs .nav-link {
+    color: var(--text-color);
+    background-color: var(--darker-bg);
+    border: 1px solid var(--rpg-secondary);
+    border-bottom: none;
+    margin-right: 5px;
+    font-family: 'MedievalSharp', cursive;
+    transition: all 0.3s ease;
+}
+
+.rpg-tabs .nav-link:hover {
+    background-color: var(--rpg-secondary);
+    color: var(--text-color);
+}
+
+.rpg-tabs .nav-link.active {
+    background-color: var(--rpg-primary);
+    color: var(--text-color);
+    border-color: var(--rpg-gold);
+    border-bottom: none;
+}
+
+/* Cartões de baús */
+.chest-card {
+    background-color: var(--darker-bg);
+    border: 1px solid var(--rpg-secondary);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.chest-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--rpg-primary), var(--rpg-gold), var(--rpg-primary));
+    z-index: 1;
+}
+
+/* Cartão de resultados */
+.results-card {
+    background-color: var(--darker-bg);
+    border: 1px solid var(--rpg-secondary);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.rpg-card-header {
+    background-color: var(--rpg-secondary);
+    color: var(--text-color);
+    font-family: 'MedievalSharp', cursive;
+    border-bottom: 1px solid var(--rpg-gold);
+}
+
+.results-container {
+    background-color: var(--dark-bg);
+    border-radius: 4px;
+    padding: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+    font-family: 'Consolas', monospace;
+    font-size: 0.9rem;
+    color: var(--text-color); /* Garantindo cor do texto */
+    border: 1px solid var(--rpg-secondary); /* Adicionando borda */
+}
+
+/* Botões estilizados */
+.btn-rpg {
+    background-color: var(--rpg-primary);
+    border-color: var(--rpg-secondary);
+    color: white;
+    font-family: 'MedievalSharp', cursive;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn-rpg::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.btn-rpg:hover {
+    background-color: var(--rpg-secondary);
+    border-color: var(--rpg-gold);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(138, 95, 185, 0.5);
+}
+
+.btn-rpg:hover::after {
+    opacity: 1;
+    left: 100%;
+}
+
+/* Campos de entrada */
+.search-input, .key-price-input {
+    background-color: var(--entry-bg);
+    border: 1px solid var(--rpg-secondary);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus, .key-price-input:focus {
+    background-color: var(--entry-bg);
+    color: white;
+    border-color: var(--rpg-gold);
+    box-shadow: 0 0 0 0.25rem rgba(138, 95, 185, 0.25);
+}
+
+/* Estilo para itens */
+.items-container {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.rarity-header {
+    padding: 10px 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--rpg-secondary);
+    font-family: 'MedievalSharp', cursive;
+}
+
+.item-row {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+.item-row:hover {
+    background-color: var(--rpg-dark);
+}
+
+.item-name {
+    flex-grow: 1;
+    padding-right: 10px;
+}
+
+.item-price {
+    width: 120px;
+}
+
+/* Cores de raridade */
+.common {
+    color: var(--common-color);
+}
+
+.uncommon {
+    color: var(--uncommon-color);
+}
+
+.rare {
+    color: var(--rare-color);
+}
+
+.epic {
+    color: var(--epic-color);
+}
+
+.legendary {
+    color: var(--legendary-color);
+}
+
+/* Modal estilizado */
+.modal-content {
+    background-color: var(--rpg-dark);
+    border: 2px solid var(--rpg-secondary);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--rpg-secondary);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--rpg-secondary);
+}
+
+/* Lista de saves */
+.list-group-item {
+    background-color: var(--darker-bg);
+    color: var(--text-color);
+    border-color: var(--rpg-secondary);
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: var(--rpg-secondary);
+    cursor: pointer;
+}
+
+/* Efeito de scroll personalizado */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--rpg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--rpg-secondary);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--rpg-primary);
+}
+
+/* Efeito de brilho mágico */
+.magic-glow {
+    position: relative;
+}
+
+.magic-glow::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 12px;
+    background: linear-gradient(45deg, var(--rpg-primary), var(--rpg-gold), var(--rpg-primary));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.magic-glow:hover::before {
+    opacity: 0.6;
+    animation: glowing 2s infinite;
+}
+
+@keyframes glowing {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+    100% { opacity: 0.3; }
+}
+
+/* Estatísticas de lucro/prejuízo */
+.profit-stat {
+    color: var(--profit-color);
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(77, 255, 87, 0.5); /* Adicionando sombra de texto para melhorar legibilidade */
+    font-size: 1.05rem; /* Aumentando ligeiramente o tamanho da fonte */
+}
+
+.loss-stat {
+    color: var(--loss-color);
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(255, 90, 90, 0.5); /* Adicionando sombra de texto para melhorar legibilidade */
+    font-size: 1.05rem; /* Aumentando ligeiramente o tamanho da fonte */
+}
+
+/* Adicionando destaque para os resultados */
+.results-container strong {
+    color: var(--rpg-light); /* Destacando os rótulos */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .title-text {
+        font-size: 1.5rem;
+    }
+    
+    .subtitle-text {
+        font-size: 0.9rem;
+    }
+    
+    .items-container {
+        max-height: 400px;
+    }
+    
+    .results-container {
+        max-height: 200px;
+    }
+}
+
